@@ -1,26 +1,57 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'flexboxgrid'
+import Home from './Comp/Pages/home'
+import About from './Comp/Pages/about'
+import NotFound from './Comp/Pages/404'
+import Post from './Comp/Pages/Posts'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
-function App() {
+const App = () => {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Router>
+      <div className="nav__wrapper">
+        <Link className='nav' to="/">Home</Link>
+            &nbsp;&nbsp;&nbsp;
+      <Link className='nav' to="/about">About</Link>
+            &nbsp;&nbsp;&nbsp;
+            </div>
+
+            
+      <Link to="/post/1">Post</Link>
+
+      <Switch>
+
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+
+        <Route path="/post/:id">
+          <Post />
+        </Route>
+
+        <Route path="/404">
+          <NotFound />
+        </Route>
+
+      </Switch>
+    </Router>
+
+
   );
-}
+};
+
 
 export default App;
